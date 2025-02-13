@@ -267,6 +267,7 @@ export default async function RootLayout({ children }) {
       lang="en"
       data-toolpad-color-scheme="dark"
       className={cutiveMono.className}
+      suppressHydrationWarning
     >
       <body className={cutiveMono.variable}>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>

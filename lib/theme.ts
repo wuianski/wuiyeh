@@ -7,7 +7,7 @@ const theme = createTheme({
         colorSchemeSelector: 'data-toolpad-color-scheme',
     },
     colorSchemes: {
-        // light: true,
+        light: true,
         dark: true,
     },
     typography: {
