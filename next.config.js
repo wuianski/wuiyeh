@@ -24,6 +24,16 @@ const nextConfig = {
     // your project has ESLint errors.
     // ignoreDuringBuilds: true,
   },
+  async redirects() {
+    return [
+      // Basic redirect
+      {
+        source: '/',
+        destination: '/generative-data',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = (nextConfig);
