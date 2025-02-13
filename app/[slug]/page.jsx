@@ -79,7 +79,7 @@ export default async function Page({ params }) {
               <Box key={review.id}>
                 {review.item.review_tw ? (
                   <a
-                    href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DEV}${review.item.review_tw.filename_disk}`}
+                    href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${review.item.review_tw.filename_disk}`}
                     target="_blank"
                   >
                     <Box
@@ -93,7 +93,7 @@ export default async function Page({ params }) {
                   </a>
                 ) : review.item.review_en ? (
                   <a
-                    href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DEV}${review.item.review_en.filename_disk}`}
+                    href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${review.item.review_en.filename_disk}`}
                     target="_blank"
                   >
                     <Box

@@ -159,7 +159,7 @@ const NAVIGATION = [
         component="img"
         sx={{ height: 30 }}
         alt="project cover image"
-        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DEV}${work.cover.filename_disk}`}
+        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
       />
     ),
   })),
@@ -176,7 +176,7 @@ const NAVIGATION = [
         component="img"
         sx={{ height: 30 }}
         alt="project cover image"
-        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DEV}${work.cover.filename_disk}`}
+        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
       />
     ),
   })),
@@ -193,7 +193,7 @@ const NAVIGATION = [
         component="img"
         sx={{ height: 30 }}
         alt="project cover image"
-        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DEV}${work.cover.filename_disk}`}
+        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
       />
     ),
   })),
@@ -210,7 +210,7 @@ const NAVIGATION = [
         component="img"
         sx={{ height: 30 }}
         alt="project cover image"
-        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DEV}${work.cover.filename_disk}`}
+        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
       />
     ),
   })),
@@ -227,7 +227,7 @@ const NAVIGATION = [
         component="img"
         sx={{ height: 30 }}
         alt="project cover image"
-        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DEV}${work.cover.filename_disk}`}
+        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
       />
     ),
   })),
@@ -246,7 +246,7 @@ const NAVIGATION = [
         <Box component="span">CV: </Box>
         <Box component="span">
           <a
-            href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DEV}${cv.cv.filename_disk}`}
+            href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${cv.cv.filename_disk}`}
             target="_blank"
             rel="noopener noreferrer"
           >

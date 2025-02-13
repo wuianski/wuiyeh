@@ -30,9 +30,6 @@ nav::-webkit-scrollbar {
 }
 
 /* Navigation */
-.MuiListItem-root{
-  /* padding-left: 0.9rem; */
-}
 .MuiButtonBase-root{
   height: 2.7rem; 
   max-width: fit-content;
