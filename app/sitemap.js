@@ -4,23 +4,25 @@ import { notFound } from "next/navigation";
 import { readItems } from "@directus/sdk";
 /* fetch data from directus */
 async function getWork() {
-    try {
-        return await directus.request(
-            readItems("works", {
-                fields: ["*", "*.*"],
-                sort: ["-year"],
-                filter: {
-                    _and: [
-                        {
-                            status: { _eq: "published" },
-                        },
-                    ],
-                },
-            })
-        );
-    } catch (error) {
+    const works = await directus.request(
+        readItems("works", {
+            fields: ["*", "*.*"],
+            sort: ["-year"],
+            filter: {
+                _and: [
+                    {
+                        status: { _eq: "published" },
+                    },
+                ],
+            },
+        })
+    );
+
+    if (!works || works.length === 0) {
         notFound();
     }
+
+    return works;
 }
 
 export default async function sitemap() {
