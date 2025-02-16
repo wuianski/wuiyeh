@@ -258,6 +258,12 @@ const NAVIGATION = [
   },
 ];
 
+/* SEO */
+export const metadata = {
+  title: "WU I-YEH | 吳宜曄",
+  description: "WU I-YEH's website",
+};
+
 export default async function RootLayout({ children }) {
   // const works = await getWorks();
   // console.log(works);
