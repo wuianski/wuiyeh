@@ -9,6 +9,8 @@ import { Box, Stack } from "@mui/material";
 import Item from "@/components/StackItem";
 /* grid image */
 import PhotoGallery from "@/components/PhotoGallery";
+/* Video PLayer */
+import VideoPlayer from "@/components/VideoPlayer";
 
 /* fetch data from directus */
 async function getWork(slug) {
@@ -22,6 +24,7 @@ async function getWork(slug) {
             cover: ["*.*"],
             images: ["*.*", "*.*.*"],
             reviews: ["*", "*.*", "*.*.*"],
+            videos: ["*", "*.*", "*.*.*"],
           },
         ],
         filter: {
@@ -69,7 +72,7 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
   const work = await getWork((await params).slug);
-  // console.log(work.reviews);
+  // console.log(work.videos);
   return (
     <Box
       className={cutiveMono.className}
@@ -78,6 +81,7 @@ export default async function Page({ params }) {
       <Stack direction={{ xs: "column", md: "row" }}>
         <Item sx={{ width: { xs: "100%", md: "60%" } }}>
           <PhotoGallery photos={work.images} />
+          <VideoPlayer videos={work.videos} />
         </Item>
         <Item
           sx={{
