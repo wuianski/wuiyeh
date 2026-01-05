@@ -13,7 +13,7 @@ export default function NextJsImage({
         // priority={true}
         fill
         src={photo}
-        quality={100}
+        // quality={100}
         placeholder={"blurDataURL" in photo ? "blur" : undefined}
         {...{ alt, title, sizes, className, onClick }}
       />

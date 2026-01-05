@@ -20,6 +20,10 @@ import directus from "../lib/directus";
 import { notFound } from "next/navigation";
 import { readItems } from "@directus/sdk";
 
+/* react-slick styles */
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 async function getCat1() {
   try {
     return await directus.request(
@@ -37,7 +41,7 @@ async function getCat1() {
       })
     );
   } catch (error) {
-    notFound();
+    return [];
   }
 }
 
@@ -58,7 +62,7 @@ async function getCat2() {
       })
     );
   } catch (error) {
-    notFound();
+    return [];
   }
 }
 
@@ -79,7 +83,7 @@ async function getCat3() {
       })
     );
   } catch (error) {
-    notFound();
+    return [];
   }
 }
 
@@ -100,7 +104,7 @@ async function getCat4() {
       })
     );
   } catch (error) {
-    notFound();
+    return [];
   }
 }
 
@@ -121,7 +125,7 @@ async function getCat5() {
       })
     );
   } catch (error) {
-    notFound();
+    return [];
   }
 }
 
@@ -133,7 +137,7 @@ async function getCV() {
       })
     );
   } catch (error) {
-    notFound();
+    return [];
   }
 }
 
@@ -156,10 +160,14 @@ export default async function RootLayout({ children }) {
 
   /* Orgnize navigation from works */
   const NAVIGATION = [
-    {
-      kind: "header",
-      title: cat2[0].category.category_name.toUpperCase(),
-    },
+    ...(cat2.length > 0
+      ? [
+          {
+            kind: "header",
+            title: `#${cat2[0].category.category_name.toUpperCase()}`,
+          },
+        ]
+      : []),
     ...cat2.map((work) => ({
       segment: `${work.slug}`,
       title: work.title,
@@ -173,10 +181,14 @@ export default async function RootLayout({ children }) {
       ),
     })),
 
-    {
-      kind: "header",
-      title: cat1[0].category.category_name.toUpperCase(),
-    },
+    ...(cat1.length > 0
+      ? [
+          {
+            kind: "header",
+            title: `#${cat1[0].category.category_name.toUpperCase()}`,
+          },
+        ]
+      : []),
     ...cat1.map((work) => ({
       segment: `${work.slug}`,
       title: work.title,
@@ -190,10 +202,14 @@ export default async function RootLayout({ children }) {
       ),
     })),
 
-    {
-      kind: "header",
-      title: cat5[0].category.category_name.toUpperCase(),
-    },
+    ...(cat5.length > 0
+      ? [
+          {
+            kind: "header",
+            title: `#${cat5[0].category.category_name.toUpperCase()}`,
+          },
+        ]
+      : []),
     ...cat5.map((work) => ({
       segment: `${work.slug}`,
       title: work.title,
@@ -207,10 +223,14 @@ export default async function RootLayout({ children }) {
       ),
     })),
 
-    {
-      kind: "header",
-      title: cat3[0].category.category_name.toUpperCase(),
-    },
+    ...(cat3.length > 0
+      ? [
+          {
+            kind: "header",
+            title: `#${cat3[0].category.category_name.toUpperCase()}`,
+          },
+        ]
+      : []),
     ...cat3.map((work) => ({
       segment: `${work.slug}`,
       title: work.title,
@@ -224,10 +244,14 @@ export default async function RootLayout({ children }) {
       ),
     })),
 
-    {
-      kind: "header",
-      title: cat4[0].category.category_name.toUpperCase(),
-    },
+    ...(cat4.length > 0
+      ? [
+          {
+            kind: "header",
+            title: `#${cat4[0].category.category_name.toUpperCase()}`,
+          },
+        ]
+      : []),
     ...cat4.map((work) => ({
       segment: `${work.slug}`,
       title: work.title,

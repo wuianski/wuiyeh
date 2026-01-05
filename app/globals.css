@@ -22,48 +22,57 @@ nav {
   margin-left: 1.8rem;
   margin-right: 1.8rem;
   margin-bottom: 1.8rem;
-  scrollbar-width: none;  /* Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 nav::-webkit-scrollbar {
   display: none; /* for Chrome, Safari and Opera */
 }
 
+main {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+main::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari and Opera */
+}
+
 /* Navigation */
-.MuiButtonBase-root{
-  height: 2.7rem; 
+.MuiButtonBase-root {
+  height: 2.7rem;
   max-width: fit-content;
   padding: 0.9rem;
   margin-top: 0.45rem;
   flex-direction: row-reverse;
-  gap:1rem;
+  gap: 1rem;
 }
-.MuiListItemText-root{
+.MuiListItemText-root {
   height: 8px;
   line-height: 8px;
-  margin-bottom: unset  ;
+  margin-bottom: unset;
 }
-.MuiListSubheader-root{
+.MuiListSubheader-root {
   margin-top: 0.9rem;
   font-size: 10px;
 }
 
 /* Lightbox */
-.yarl__toolbar .yarl__button{
+.yarl__toolbar .yarl__button {
   /* color:#fff !important; */
   color: light-dark(white, black) !important;
-  filter:none !important;
+  filter: none !important;
   /* background: #000 !important; */
   background: light-dark(black, white) !important;
 }
 
-.yarl__navigation_next, .yarl__navigation_prev {
+.yarl__navigation_next,
+.yarl__navigation_prev {
   /* color:#fff !important; */
   color: light-dark(white, black) !important;
-  filter:none !important;
+  filter: none !important;
   /* background: #000 !important; */
   background: light-dark(black, white) !important;
-  padding: var(--yarl__navigation_button_padding,8px 8px) !important;
+  padding: var(--yarl__navigation_button_padding, 8px 8px) !important;
 }
 .yarl__button:disabled {
   /* color:#fff !important; */
@@ -83,7 +92,7 @@ nav::-webkit-scrollbar {
   /* color:#000 !important; */
   color: light-dark(white, black) !important;
   /* background: #fff !important; */
-  background: light-dark(black, white) !important;  
+  background: light-dark(black, white) !important;
   display: inline !important;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -110,5 +119,4 @@ nav::-webkit-scrollbar {
   .yarl__slide_wrapper {
     display: table-caption !important;
   }
-
 }
