@@ -58,11 +58,18 @@ main::-webkit-scrollbar {
   /* margin-top: 0.9rem; */
   font-size: 10px;
 }
+.MuiListItemButton-root {
+  background: none !important;
+  transition: none !important;
+}
 .MuiListItemButton-root.Mui-selected {
   background: none !important;
 }
 .MuiListItemButton-root:hover {
   background: none !important;
+}
+.MuiTouchRipple-root {
+  display: none !important;
 }
 
 /* Lightbox */
