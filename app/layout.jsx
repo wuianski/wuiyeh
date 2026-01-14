@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 
 import { NextAppProvider } from "@toolpad/core/nextjs";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -22,7 +21,7 @@ import { Box } from "@mui/material";
 
 /* Directus */
 import directus from "../lib/directus";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import { readItems } from "@directus/sdk";
 
 /* react-slick styles */
@@ -138,7 +137,7 @@ async function getCV() {
   try {
     return await directus.request(
       readItems("cv", {
-        fields: ["*", "*.*"],
+        fields: ["*", "*.*", "*.*.*"],
       })
     );
   } catch (error) {
@@ -161,7 +160,7 @@ export default async function RootLayout({ children }) {
   const cat4 = await getCat4();
   const cat5 = await getCat5();
   const cv = await getCV();
-  // console.log(cv);
+  // console.log(cv.cv.filename_disk);
 
   /* Orgnize navigation from works */
   const NAVIGATION = [
@@ -313,25 +312,20 @@ export default async function RootLayout({ children }) {
         <>
           <Box component="span">CV: </Box>
           <Box component="span">
-            <a
-              href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${cv.cv.filename_disk}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download
-            </a>
+            {cv && cv[0] && cv[0].cv && (
+              <a
+                href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${cv[0].cv.filename_disk}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download
+              </a>
+            )}
           </Box>
         </>
       ),
     },
   ];
-
-  // hover on navTitle to show navIcon
-  // <style jsx>{`
-  //   .navTitle:hover + .navIcon {
-  //     display: block;
-  //   }
-  // `}</style>;
 
   return (
     /* Must to have data-toolpad-color-scheme="dark", otherwise there is a server error. */
