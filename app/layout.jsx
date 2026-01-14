@@ -9,6 +9,7 @@ import {
   SidebarFooter,
   CustomThemeSwitcher,
   CustomSidebarItem,
+  PDFLoader,
 } from "@/lib/slot";
 import theme from "@/lib/theme";
 
@@ -160,7 +161,8 @@ export default async function RootLayout({ children }) {
   const cat4 = await getCat4();
   const cat5 = await getCat5();
   const cv = await getCV();
-  // console.log(cv.cv.filename_disk);
+  // console.log("mycv", cv.cv.filename_disk);
+  // const mycv = await `${cv}`;
 
   /* Orgnize navigation from works */
   const NAVIGATION = [
@@ -180,15 +182,6 @@ export default async function RootLayout({ children }) {
           icon={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
         />
       ),
-      // icon: (
-      //   <Box
-      //     component="img"
-      //     className="navIcon"
-      //     sx={{ height: 30 }}
-      //     alt="project cover image"
-      //     src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
-      //   />
-      // ),
     })),
 
     ...(cat1.length > 0
@@ -207,15 +200,6 @@ export default async function RootLayout({ children }) {
           icon={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
         />
       ),
-      // icon: (
-      //   <Box
-      //     component="img"
-      //     className="navIcon"
-      //     sx={{ height: 30 }}
-      //     alt="project cover image"
-      //     src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
-      //   />
-      // ),
     })),
 
     ...(cat5.length > 0
@@ -234,15 +218,6 @@ export default async function RootLayout({ children }) {
           icon={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
         />
       ),
-      // icon: (
-      //   <Box
-      //     component="img"
-      //     className="navIcon"
-      //     sx={{ height: 30 }}
-      //     alt="project cover image"
-      //     src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
-      //   />
-      // ),
     })),
 
     ...(cat3.length > 0
@@ -261,15 +236,6 @@ export default async function RootLayout({ children }) {
           icon={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
         />
       ),
-      // icon: (
-      //   <Box
-      //     component="img"
-      //     className="navIcon"
-      //     sx={{ height: 30 }}
-      //     alt="project cover image"
-      //     src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
-      //   />
-      // ),
     })),
 
     ...(cat4.length > 0
@@ -288,15 +254,6 @@ export default async function RootLayout({ children }) {
           icon={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
         />
       ),
-      // icon: (
-      //   <Box
-      //     component="img"
-      //     className="navIcon"
-      //     sx={{ height: 30 }}
-      //     alt="project cover image"
-      //     src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
-      //   />
-      // ),
     })),
 
     {
@@ -308,22 +265,7 @@ export default async function RootLayout({ children }) {
     },
     {
       kind: "header",
-      title: (
-        <>
-          <Box component="span">CV: </Box>
-          <Box component="span">
-            {cv && cv[0] && cv[0].cv && (
-              <a
-                href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${cv[0].cv.filename_disk}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Download
-              </a>
-            )}
-          </Box>
-        </>
-      ),
+      title: <PDFLoader mycv={cv} />,
     },
   ];
 
