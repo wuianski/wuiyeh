@@ -5,7 +5,12 @@ import { NextAppProvider } from "@toolpad/core/nextjs";
 import LinearProgress from "@mui/material/LinearProgress";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
-import { CustomAppTitle, SidebarFooter, CustomThemeSwitcher } from "@/lib/slot";
+import {
+  CustomAppTitle,
+  SidebarFooter,
+  CustomThemeSwitcher,
+  CustomSidebarItem,
+} from "@/lib/slot";
 import theme from "@/lib/theme";
 
 /* import fonts */
@@ -170,15 +175,21 @@ export default async function RootLayout({ children }) {
       : []),
     ...cat2.map((work) => ({
       segment: `${work.slug}`,
-      title: work.title,
-      icon: (
-        <Box
-          component="img"
-          sx={{ height: 30 }}
-          alt="project cover image"
-          src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
+      title: (
+        <CustomSidebarItem
+          title={work.title}
+          icon={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
         />
       ),
+      // icon: (
+      //   <Box
+      //     component="img"
+      //     className="navIcon"
+      //     sx={{ height: 30 }}
+      //     alt="project cover image"
+      //     src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
+      //   />
+      // ),
     })),
 
     ...(cat1.length > 0
@@ -191,15 +202,21 @@ export default async function RootLayout({ children }) {
       : []),
     ...cat1.map((work) => ({
       segment: `${work.slug}`,
-      title: work.title,
-      icon: (
-        <Box
-          component="img"
-          sx={{ height: 30 }}
-          alt="project cover image"
-          src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
+      title: (
+        <CustomSidebarItem
+          title={work.title}
+          icon={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
         />
       ),
+      // icon: (
+      //   <Box
+      //     component="img"
+      //     className="navIcon"
+      //     sx={{ height: 30 }}
+      //     alt="project cover image"
+      //     src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
+      //   />
+      // ),
     })),
 
     ...(cat5.length > 0
@@ -212,15 +229,21 @@ export default async function RootLayout({ children }) {
       : []),
     ...cat5.map((work) => ({
       segment: `${work.slug}`,
-      title: work.title,
-      icon: (
-        <Box
-          component="img"
-          sx={{ height: 30 }}
-          alt="project cover image"
-          src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
+      title: (
+        <CustomSidebarItem
+          title={work.title}
+          icon={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
         />
       ),
+      // icon: (
+      //   <Box
+      //     component="img"
+      //     className="navIcon"
+      //     sx={{ height: 30 }}
+      //     alt="project cover image"
+      //     src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
+      //   />
+      // ),
     })),
 
     ...(cat3.length > 0
@@ -233,15 +256,21 @@ export default async function RootLayout({ children }) {
       : []),
     ...cat3.map((work) => ({
       segment: `${work.slug}`,
-      title: work.title,
-      icon: (
-        <Box
-          component="img"
-          sx={{ height: 30 }}
-          alt="project cover image"
-          src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
+      title: (
+        <CustomSidebarItem
+          title={work.title}
+          icon={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
         />
       ),
+      // icon: (
+      //   <Box
+      //     component="img"
+      //     className="navIcon"
+      //     sx={{ height: 30 }}
+      //     alt="project cover image"
+      //     src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
+      //   />
+      // ),
     })),
 
     ...(cat4.length > 0
@@ -254,15 +283,21 @@ export default async function RootLayout({ children }) {
       : []),
     ...cat4.map((work) => ({
       segment: `${work.slug}`,
-      title: work.title,
-      icon: (
-        <Box
-          component="img"
-          sx={{ height: 30 }}
-          alt="project cover image"
-          src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
+      title: (
+        <CustomSidebarItem
+          title={work.title}
+          icon={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
         />
       ),
+      // icon: (
+      //   <Box
+      //     component="img"
+      //     className="navIcon"
+      //     sx={{ height: 30 }}
+      //     alt="project cover image"
+      //     src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`}
+      //   />
+      // ),
     })),
 
     {
@@ -290,6 +325,13 @@ export default async function RootLayout({ children }) {
       ),
     },
   ];
+
+  // hover on navTitle to show navIcon
+  // <style jsx>{`
+  //   .navTitle:hover + .navIcon {
+  //     display: block;
+  //   }
+  // `}</style>;
 
   return (
     /* Must to have data-toolpad-color-scheme="dark", otherwise there is a server error. */

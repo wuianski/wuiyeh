@@ -59,6 +59,7 @@ export default function WorksContent({ work, params }) {
     slidesToShow: 1,
     slidesToScroll: 1,
     swipeToSlide: false,
+    arrows: false,
   };
 
   // detect window width
@@ -186,7 +187,7 @@ export default function WorksContent({ work, params }) {
               layout="rows"
               targetRowHeight={50}
               renderPhoto={NextJsImage}
-              defaultContainerWidth={500}
+              defaultContainerWidth={1200}
               sizes={{
                 size: "calc(100vw - 40px)",
                 sizes: [

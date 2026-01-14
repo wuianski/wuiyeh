@@ -18,7 +18,7 @@ a {
 }
 
 nav {
-  margin-top: 0.7rem;
+  margin-top: 1.8rem;
   margin-left: 1.8rem;
   margin-right: 1.8rem;
   margin-bottom: 1.8rem;
@@ -39,21 +39,30 @@ main::-webkit-scrollbar {
 
 /* Navigation */
 .MuiButtonBase-root {
-  height: 2.7rem;
+  height: 2.8rem;
   max-width: fit-content;
-  padding: 0.9rem;
+  /* padding: 0.9rem; */
   margin-top: 0.45rem;
   flex-direction: row-reverse;
   gap: 1rem;
 }
-.MuiListItemText-root {
+.navIcon {
+  margin-top: -12px;
+}
+/* .MuiListItemText-root {
   height: 8px;
   line-height: 8px;
   margin-bottom: unset;
-}
+} */
 .MuiListSubheader-root {
-  margin-top: 0.9rem;
+  /* margin-top: 0.9rem; */
   font-size: 10px;
+}
+.mui-mk1z4a-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
+  background: none !important;
+}
+.mui-mk1z4a-MuiButtonBase-root-MuiListItemButton-root:hover {
+  background: none !important;
 }
 
 /* Lightbox */
@@ -103,6 +112,10 @@ main::-webkit-scrollbar {
   nav {
     margin-left: 0.9rem;
     margin-right: 0.9rem;
+  }
+  .MuiSvgIcon-root {
+    margin-left: 10px;
+    margin-top: -6px;
   }
 
   .yarl__slide {
