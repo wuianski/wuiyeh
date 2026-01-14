@@ -16,7 +16,7 @@ import VideoPlayer from "@/components/VideoPlayer";
 /* fetch data from directus */
 async function getWork(slug) {
   try {
-    const work = await directus.request(
+    return await directus.request(
       readItem("works", slug, {
         fields: [
           "*",
@@ -39,9 +39,8 @@ async function getWork(slug) {
         },
       })
     );
-    return work;
   } catch (error) {
-    notFound();
+    return [];
   }
 }
 
@@ -49,25 +48,29 @@ export async function generateMetadata({ params }) {
   // fetch data
   const work = await getWork((await params).slug);
 
+  if (!work) {
+    notFound();
+  }
+
   return {
     title: work.title,
     description: work.title,
     canonical: `https://i-yeh-wu.com/${work.slug}`,
-    openGraph: {
-      type: "website",
-      url: "https://i-yeh-wu.com",
-      title: work.title,
-      description: work.title,
-      images: [
-        {
-          url: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`,
-          width: 800,
-          height: 600,
-          alt: "Cover of the artwork",
-        },
-      ],
-      site_name: "i-yeh-wu.com",
-    },
+    // openGraph: {
+    //   type: "website",
+    //   url: "https://i-yeh-wu.com",
+    //   title: work.title,
+    //   description: work.title,
+    //   images: [
+    //     {
+    //       url: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${work.cover.filename_disk}`,
+    //       width: 800,
+    //       height: 600,
+    //       alt: "Cover of the artwork",
+    //     },
+    //   ],
+    //   site_name: "i-yeh-wu.com",
+    // },
   };
 }
 
