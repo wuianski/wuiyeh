@@ -1,6 +1,6 @@
 /* fetch data from directus */
 import directus from "@/lib/directus";
-// import { notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import { readItem } from "@directus/sdk";
 /* import fonts */
 import { courier_prime, cutiveMono } from "@/lib/font";
@@ -22,7 +22,7 @@ async function getWork(slug) {
           "*",
           "*.*",
           {
-            cover: ["*.*"],
+            cover: ["*.*", "*.*.*"],
             images: ["*.*", "*.*.*"],
             reviews: ["*", "*.*", "*.*.*"],
             videos: ["*", "*.*", "*.*.*"],
@@ -41,7 +41,7 @@ async function getWork(slug) {
     );
     return work;
   } catch (error) {
-    [];
+    notFound();
   }
 }
 
