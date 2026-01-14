@@ -58,10 +58,10 @@ main::-webkit-scrollbar {
   /* margin-top: 0.9rem; */
   font-size: 10px;
 }
-.mui-mk1z4a-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
+.MuiListItemButton-root.Mui-selected {
   background: none !important;
 }
-.mui-mk1z4a-MuiButtonBase-root-MuiListItemButton-root:hover {
+.MuiListItemButton-root:hover {
   background: none !important;
 }
 
