@@ -1,6 +1,6 @@
 /* fetch data from directus */
 import directus from "@/lib/directus";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import { readItems } from "@directus/sdk";
 /* fetch data from directus */
 async function getWork() {
@@ -19,7 +19,7 @@ async function getWork() {
     );
 
     if (!works || works.length === 0) {
-        notFound();
+        [];
     }
 
     return works;

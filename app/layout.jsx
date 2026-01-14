@@ -22,7 +22,7 @@ import { Box } from "@mui/material";
 
 /* Directus */
 import directus from "../lib/directus";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import { readItems } from "@directus/sdk";
 
 /* react-slick styles */
