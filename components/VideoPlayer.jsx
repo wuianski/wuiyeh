@@ -1,3 +1,5 @@
+"use client";
+
 /* MUI */
 import { Box } from "@mui/material";
 import { title } from "process";

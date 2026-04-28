@@ -12,6 +12,7 @@ import "yet-another-react-lightbox/styles.css";
 import LightBoxNextJsImage from "@/components/LightBoxNextJsImage";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/plugins/captions.css";
+import Video from "yet-another-react-lightbox/plugins/video";
 /* react-slick */
 import Slider from "react-slick";
 /* MUI */
@@ -21,10 +22,26 @@ import Item from "@/components/StackItem";
 import useWindowWidth from "@/components/useWindowWidth";
 
 export default function WorksContent({ work, params }) {
-  // console.log("work in WorksContent:", work.images);
+  // console.log("videos:", work.videos);
   const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
   const imageSizes = [16, 32, 48, 64, 96, 128, 256, 384];
   const deviceSizes = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
+  const myVideos = work.videos
+    ? work.videos.map((video) => ({
+        type: "video",
+        video_src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${video.item.video_local.filename_disk}`,
+        src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${video.item.video_cover.filename_disk}`,
+        width: video.item.video_cover.width,
+        height: video.item.video_cover.height,
+        description: (
+          <div dangerouslySetInnerHTML={{ __html: video.item.video_caption }} />
+        ),
+        playsInline: true,
+        autoPlay: true,
+        muted: true,
+      }))
+    : [];
+
   const myphotos = work.images.map((photo) => ({
     src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${photo.item.image.filename_disk}`,
     width: photo.item.image.width,
@@ -40,15 +57,22 @@ export default function WorksContent({ work, params }) {
         src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${photo.item.image.filename_disk}`,
         width: size,
         height: Math.round(
-          (photo.item.image.height / photo.item.image.width) * size
+          (photo.item.image.height / photo.item.image.width) * size,
         ),
       })),
   }));
 
+  const combinedMedia = [...myVideos, ...myphotos];
+  // console.log("combinedMedia", combinedMedia);
   const [index, setIndex] = useState(-1);
   const [renderPrev, setRenderPrev] = useState(true);
   const [renderNext, setRenderNext] = useState(true);
   const [finite, setFinite] = useState(true);
+
+  const [controls, setControls] = useState(false);
+  const [playsInline, setPlaysInline] = useState(true);
+  const [autoPlay, setAutoPlay] = useState(true);
+  const [loop, setLoop] = useState(true);
 
   // slider
   let sliderRef = useRef(null);
@@ -89,7 +113,7 @@ export default function WorksContent({ work, params }) {
               }}
               {...settings}
             >
-              {myphotos.map((slide, idx) => {
+              {combinedMedia.map((slide, idx) => {
                 return (
                   <Box key={idx}>
                     <Box
@@ -99,16 +123,32 @@ export default function WorksContent({ work, params }) {
                         width: "100%",
                       }}
                     >
-                      <Image
-                        src={slide.src}
-                        alt="project cover image"
-                        fill
-                        style={{
-                          objectFit: "contain",
-                        }}
-                        sizes="(max-width: 900px) 100vw, calc(100vw - 800px)"
-                        priority={idx === 0 ? true : false}
-                      />
+                      {slide.type === "video" ? (
+                        <video
+                          src={slide.video_src}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "contain",
+                          }}
+                          controls
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                        />
+                      ) : (
+                        <Image
+                          src={slide.src}
+                          alt="project cover image"
+                          fill
+                          style={{
+                            objectFit: "contain",
+                          }}
+                          sizes="(max-width: 900px) 100vw, calc(100vw - 800px)"
+                          priority={idx === 0 ? true : false}
+                        />
+                      )}
                     </Box>
                     <Box
                       sx={{
@@ -184,11 +224,11 @@ export default function WorksContent({ work, params }) {
           </Box>
           <Box>
             <PhotoAlbum
-              photos={myphotos}
+              photos={combinedMedia}
               layout="rows"
               targetRowHeight={50}
               renderPhoto={NextJsImage}
-              defaultContainerWidth={1200}
+              defaultContainerWidth={500}
               sizes={{
                 size: "calc(100vw - 40px)",
                 sizes: [
@@ -217,12 +257,12 @@ export default function WorksContent({ work, params }) {
           </Box>
           <Box>
             <Lightbox
-              slides={myphotos}
+              slides={combinedMedia}
               open={index >= 0}
               index={index}
               close={() => setIndex(-1)}
               // enable optional lightbox plugins
-              plugins={[Zoom, Captions]}
+              plugins={[Zoom, Captions, Video]}
               render={{
                 slide: LightBoxNextJsImage,
                 buttonPrev: renderPrev ? undefined : () => null,
@@ -232,6 +272,12 @@ export default function WorksContent({ work, params }) {
                 container: { backgroundColor: "rgba(0, 0, 0, 0)" },
               }}
               carousel={{ finite }}
+              video={{
+                controls,
+                playsInline,
+                autoPlay,
+                loop,
+              }}
             />
           </Box>
         </Item>

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   isImageFitCover,
@@ -14,7 +16,7 @@ function isNextJsImage(slide) {
   );
 }
 
-export default function NextJsImage({ slide, offset, rect }) {
+export default function LightBoxNextJsImage({ slide, offset, rect }) {
   const {
     on: { click },
     carousel: { imageFit },
@@ -28,13 +30,13 @@ export default function NextJsImage({ slide, offset, rect }) {
 
   const width = !cover
     ? Math.round(
-        Math.min(rect.width, (rect.height / slide.height) * slide.width)
+        Math.min(rect.width, (rect.height / slide.height) * slide.width),
       )
     : rect.width;
 
   const height = !cover
     ? Math.round(
-        Math.min(rect.height, (rect.width / slide.width) * slide.height)
+        Math.min(rect.height, (rect.width / slide.width) * slide.height),
       )
     : rect.height;
 
