@@ -173,6 +173,8 @@ export default function WorksContent({ work, params }) {
         <Item
           sx={{
             width: { xs: "100%", md: "350px" },
+            height: { xs: "auto", md: "100%" },
+            minHeight: { xs: "auto", md: "90vh" },
             borderLeft: { xs: "none", md: "1px solid rgba(0, 0, 0, 0.12)" },
             borderRadius: { xs: "0rem", md: "0rem" },
             p: { xs: "0.9rem !important", md: "1.8rem !important" },
