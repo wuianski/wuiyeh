@@ -29,22 +29,21 @@ export default function WorksContent({ work, params }) {
   const myVideos = work.videos
     ? work.videos.map((video) => ({
         type: "video",
+        width: video.item.video_cover.width,
+        height: video.item.video_cover.height,
         video_src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${video.item.video_local.filename_disk}`,
+        // poster: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${video.item.video_cover.filename_disk}`,
         sources: [
           {
             src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${video.item.video_local.filename_disk}`,
-            type: video.item.video_local.mime_type,
+            type: video.item.video_local.type,
+            // media: `(width: ${video.item.video_cover.width}px)`,
           },
         ],
         src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${video.item.video_cover.filename_disk}`,
-        width: video.item.video_cover.width,
-        height: video.item.video_cover.height,
         description: (
           <div dangerouslySetInnerHTML={{ __html: video.item.video_caption }} />
         ),
-        playsInline: true,
-        autoPlay: true,
-        muted: true,
       }))
     : [];
 
@@ -79,6 +78,8 @@ export default function WorksContent({ work, params }) {
   const [playsInline, setPlaysInline] = useState(true);
   const [autoPlay, setAutoPlay] = useState(true);
   const [loop, setLoop] = useState(true);
+  const [muted, setMuted] = useState(true);
+  const [preload, setPreload] = useState("metadata");
 
   // slider
   let sliderRef = useRef(null);
@@ -136,7 +137,7 @@ export default function WorksContent({ work, params }) {
                             height: "100%",
                             objectFit: "contain",
                           }}
-                          controls
+                          // controls
                           autoPlay
                           loop
                           muted
@@ -269,22 +270,42 @@ export default function WorksContent({ work, params }) {
               index={index}
               close={() => setIndex(-1)}
               // enable optional lightbox plugins
-              plugins={[Zoom, Captions, Video]}
+              plugins={[Zoom, Captions]}
               render={{
-                slide: LightBoxNextJsImage,
+                // slide: LightBoxNextJsImage,
+                slide: ({ slide, offset, rect }) =>
+                  slide.type === "video" ? (
+                    <>
+                      <video
+                        src={slide.video_src}
+                        style={{
+                          width: "100%",
+                          objectFit: "contain",
+                        }}
+                        type={slide.type}
+                        // controls
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      />
+                    </>
+                  ) : (
+                    <LightBoxNextJsImage
+                      slide={slide}
+                      offset={offset}
+                      rect={rect}
+                    />
+                  ),
+
                 buttonPrev: renderPrev ? undefined : () => null,
                 buttonNext: renderNext ? undefined : () => null,
               }}
               styles={{
                 container: { backgroundColor: "rgba(0, 0, 0, 0)" },
+                WebkitTransform: "translateZ(0)",
               }}
               carousel={{ finite }}
-              video={{
-                controls,
-                playsInline,
-                autoPlay,
-                loop,
-              }}
             />
           </Box>
         </Item>
