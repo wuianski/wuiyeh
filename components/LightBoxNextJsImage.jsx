@@ -17,6 +17,7 @@ function isNextJsImage(slide) {
 }
 
 export default function LightBoxNextJsImage({ slide, offset, rect }) {
+  // console.log("slide in LightBoxNextJsImage:", slide);
   const {
     on: { click },
     carousel: { imageFit },
@@ -44,11 +45,8 @@ export default function LightBoxNextJsImage({ slide, offset, rect }) {
     <div style={{ position: "relative", width: width, height: height }}>
       <Image
         fill
-        // priority={true}
         alt="work image"
         src={slide}
-        // quality={100}
-        // loading="eager"
         draggable={false}
         placeholder={slide.blurDataURL ? "blur" : undefined}
         style={{

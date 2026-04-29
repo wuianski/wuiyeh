@@ -30,6 +30,12 @@ export default function WorksContent({ work, params }) {
     ? work.videos.map((video) => ({
         type: "video",
         video_src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${video.item.video_local.filename_disk}`,
+        sources: [
+          {
+            src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${video.item.video_local.filename_disk}`,
+            type: video.item.video_local.mime_type,
+          },
+        ],
         src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${video.item.video_cover.filename_disk}`,
         width: video.item.video_cover.width,
         height: video.item.video_cover.height,
@@ -104,7 +110,6 @@ export default function WorksContent({ work, params }) {
               left: { xs: "0", md: "50%" },
               transform: { xs: "none", md: "translate(-50%, -50%)" },
               display: { xs: "none", md: "block" },
-              // backgroundColor: "blue",
             }}
           >
             <Slider
@@ -226,7 +231,7 @@ export default function WorksContent({ work, params }) {
             <PhotoAlbum
               photos={combinedMedia}
               layout="rows"
-              targetRowHeight={50}
+              targetRowHeight={80}
               renderPhoto={NextJsImage}
               defaultContainerWidth={500}
               sizes={{

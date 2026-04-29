@@ -43,7 +43,7 @@ async function getCat1() {
             },
           ],
         },
-      })
+      }),
     );
   } catch (error) {
     return [];
@@ -64,7 +64,7 @@ async function getCat2() {
             },
           ],
         },
-      })
+      }),
     );
   } catch (error) {
     return [];
@@ -85,7 +85,7 @@ async function getCat3() {
             },
           ],
         },
-      })
+      }),
     );
   } catch (error) {
     return [];
@@ -106,7 +106,7 @@ async function getCat4() {
             },
           ],
         },
-      })
+      }),
     );
   } catch (error) {
     return [];
@@ -127,7 +127,7 @@ async function getCat5() {
             },
           ],
         },
-      })
+      }),
     );
   } catch (error) {
     return [];
@@ -139,7 +139,7 @@ async function getCV() {
     return await directus.request(
       readItems("cv", {
         fields: ["*", "*.*", "*.*.*"],
-      })
+      }),
     );
   } catch (error) {
     return [];
@@ -289,6 +289,14 @@ export default async function RootLayout({ children }) {
                   appTitle: CustomAppTitle,
                   sidebarFooter: SidebarFooter,
                   toolbarActions: CustomThemeSwitcher,
+                }}
+                sx={{
+                  position: "absolute",
+                  top: 10,
+                  left: 10,
+                  width: "calc(100% - 20px)",
+                  height: "calc(100% - 20px)",
+                  border: "1px solid #ccc",
                 }}
               >
                 {children}

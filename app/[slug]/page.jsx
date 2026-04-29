@@ -37,7 +37,7 @@ async function getWork(slug) {
             },
           ],
         },
-      })
+      }),
     );
   } catch (error) {
     return [];
